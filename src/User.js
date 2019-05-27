@@ -128,6 +128,7 @@ class User {
         const ingredients = document.querySelector('.form-ingredients')
 
         const ingredientRow = document.createElement('li')
+        ingredientRow.classList.add('ingredient-input')
         ingredients.appendChild(ingredientRow)
 
         const qty = document.createElement('input')
@@ -151,6 +152,7 @@ class User {
         directions.appendChild(directionWrapper)
 
         const direction = document.createElement('textarea')
+        direction.classList.add('direction-input')
         direction.addEventListener('input', User.addDirection)
         directionWrapper.appendChild(direction)
     }
@@ -160,8 +162,14 @@ class User {
 
         const body = {
             user_id: this.id,
-            name: e.target[0].value
+            name: e.target[0].value,
+            servings: e.target[1].value,
+            description: e.target[2].value,
+            ingredients: RecipeIngredient.parseFormIngredients(e),
+            instructions: Instruction.parseInstructions(e)
         }
+
+        fetch()
 
     }
 
