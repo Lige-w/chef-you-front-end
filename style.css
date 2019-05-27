@@ -1,0 +1,90 @@
+/*/////// Style for full site ///////*/
+
+body {
+    margin: 0;
+    /*background-color: black;*/
+}
+
+
+#background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-image: url("http://theird.files.wordpress.com/2013/05/food-justice-grace-hearth_cal-corps-berkeley_130506-article.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: chocolate;
+    opacity: .5;
+    z-index: -1;
+}
+
+#root {
+    height: 90vh;
+    width: 45vw;
+    background-color: burlywood;
+    left: 0;
+    top: 0;
+    padding: 20px;
+    margin: 2.5vh auto;
+    border-radius: 5px;
+    box-shadow: 5px 10px;
+}
+
+#root.open {
+    width: 90vw;
+    background-color: antiquewhite;
+}
+
+/*/////// Login Page ////////*/
+
+.site-title {
+}
+
+
+.login-wrapper {
+    height:auto;
+    margin:auto;
+    padding: 30vh 0;
+    text-align: center;
+}
+
+.form {
+    width:40%;
+    margin: auto;
+    text-wrap: none;
+}
+
+.form input {
+    margin: auto;
+    width: 100%;
+}
+
+/*/////// User Index ///////*/
+
+.page-title {
+    margin: 0;
+}
+
+/*////// Recipe Form ///////*/
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: black;
+    opacity: .5;
+
+}
+
+.form-wrapper {
+    background-color: antiquewhite;
+    position: absolute;
+    top: 5vh;
+    width: 60vw;
+    height: 90vh;
+    z-index: 3;
+}
