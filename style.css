@@ -91,6 +91,23 @@ body {
 
     /*/////// Recipe Page /////////*/
 
-.page-one, page-two {
+.page-one, .page-two {
     display: inline-block;
+    width: 50%;
+    height: 100%;
+}
+
+.page-one *, .page-two * {
+    padding: 5%
+}
+
+.page-one {
+    background: white;
+    background: linear-gradient(90deg, white 94%, gray 99%, black 100%);
+}
+
+.page-two {
+    background: white;
+    background: linear-gradient(90deg, black 0%, gray 1%, white 6%);
+    vertical-align: top;
 }
