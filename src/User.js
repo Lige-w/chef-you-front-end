@@ -13,7 +13,7 @@ class User {
             username: e.target.firstElementChild.value
         }
 
-        fetch(USERS_URL, Page.configObj('POST', body))
+        fetch(Page.USERS_URL, Page.configObj('POST', body))
             .then(resp => resp.json())
             .then(user => {
                 const loggedIn = new User(user)
@@ -25,7 +25,7 @@ class User {
         e.preventDefault()
         const username = e.target.firstElementChild.value
 
-        fetch(USERS_URL)
+        fetch(Page.USERS_URL)
             .then(resp => resp.json())
             .then(users => {
                 const thisUser = users.find(user => user.username === username)
@@ -161,16 +161,20 @@ class User {
         e.preventDefault()
 
         const body = {
-            user_id: this.id,
-            name: e.target[0].value,
-            servings: e.target[1].value,
-            description: e.target[2].value,
-            ingredients: RecipeIngredient.parseFormIngredients(e),
-            instructions: Instruction.parseInstructions(e)
+            recipe: {
+                user_id: this.id,
+                name: e.target[0].value,
+                servings: e.target[1].value,
+                description: e.target[2].value,
+                quantities_attributes: Quantity.parseFormIngredients(e),
+                instructions_attributes: Instruction.parseInstructions(e)
+            }
         }
 
-        fetch()
-
+        fetch(Page.RECIPES_URL, Page.configObj("POST", body))
+            .then(resp => resp.json())
+            .then(recipe => {debugger})
+            .catch(console.log)
     }
 
 }
