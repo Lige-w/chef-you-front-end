@@ -71,6 +71,7 @@ class Recipe {
         pageTwo.appendChild(instructions)
 
         this.instructions.forEach(instruction => this.renderInstruction(instructions, instruction))
+
     }
 
     renderInstruction(node, instruction) {
