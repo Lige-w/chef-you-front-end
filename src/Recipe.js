@@ -8,13 +8,24 @@ class Recipe {
         if (!!params.instructions) {this.instructions = params.instructions.map(instruction => instruction.description)}
     }
 
+    //render recipe to User Portal
     renderIndex(node) {
         const listItem = document.createElement('li')
+        listItem.addEventListener('click', e => this.getRecipe(e))
         node.appendChild(listItem)
 
         const title = document.createElement('h3')
         title.innerText = this.name
         listItem.appendChild(title)
+    }
+
+    getRecipe(e) {
+        fetch(`${Page.RECIPES_URL}/${this.id}`)
+            .then(resp => resp.json())
+            .then(recipe => {
+                const newRecipe = new Recipe(recipe)
+                newRecipe.render()
+            })
     }
 
     render() {
@@ -60,9 +71,6 @@ class Recipe {
         pageTwo.appendChild(instructions)
 
         this.instructions.forEach(instruction => this.renderInstruction(instructions, instruction))
-
-
-        debugger
     }
 
     renderInstruction(node, instruction) {

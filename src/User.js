@@ -17,7 +17,7 @@ class User {
             .then(resp => resp.json())
             .then(user => {
                 const loggedIn = new User(user)
-                loggedIn.render()
+                loggedIn.renderUserPortal()
             })
     }
 
@@ -30,12 +30,12 @@ class User {
             .then(users => {
                 const thisUser = users.find(user => user.username === username)
                 const loggedIn = new User(thisUser)
-                loggedIn.render()
+                loggedIn.renderUserPortal()
             })
             .catch(console.log)
     }
 
-    render() {
+    renderUserPortal() {
         const root = document.getElementById('root')
         root.innerHTML = ''
         root.classList.add('open')
