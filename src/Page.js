@@ -4,6 +4,10 @@ class Page {
         Page.loggedIn.user = this.user
     }
 
+    static RECIPES_URL = 'http://localhost:3000/api/v1/recipes'
+
+    static USERS_URL = 'http://localhost:3000/api/v1/users'
+
     static renderLogin() {
         const root = document.getElementById('root')
         root.innerHTML = ''
