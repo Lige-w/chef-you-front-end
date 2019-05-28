@@ -1,4 +1,11 @@
-class Quantity {
+class Ingredient {
+
+    constructor(params) {
+        this.name = params.name
+        this.unit = params.unit
+        this.amount = params.amount
+    }
+
     static parseFormIngredients(e) {
         const ingredientNodes = e.target.querySelectorAll('.ingredient-input')
         const nodesWithValue = [...ingredientNodes].filter(node => !!node.children[2].value)
@@ -10,5 +17,11 @@ class Quantity {
 
             }
         })
+    }
+
+    renderQuantities(node) {
+        const ingredient = document.createElement("li")
+        ingredient.innerHTML = `<strong>${this.amount} ${this.unit}</strong> ${this.name}`
+        node.appendChild(ingredient)
     }
 }

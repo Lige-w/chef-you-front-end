@@ -88,3 +88,9 @@ body {
     height: 90vh;
     z-index: 3;
 }
+
+    /*/////// Recipe Page /////////*/
+
+.page-one, page-two {
+    display: inline-block;
+}

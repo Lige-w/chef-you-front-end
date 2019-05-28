@@ -110,12 +110,12 @@ class User {
         const ingredients = document.createElement('ul')
         ingredients.classList.add('form-ingredients')
         form.appendChild(ingredients)
-        User.addIngredient(e)
+        User.addIngredientField(e)
 
         const directions = document.createElement('ol')
         directions.classList.add('form-directions')
         form.appendChild(directions)
-        User.addDirection(e)
+        User.addDirectionField(e)
 
         const submit = document.createElement('input')
         submit.type = 'submit'
@@ -123,8 +123,8 @@ class User {
         form.appendChild(submit)
     }
 
-    static addIngredient(e) {
-        e.target.removeEventListener('input', User.addIngredient)
+    static addIngredientField(e) {
+        e.target.removeEventListener('input', User.addIngredientField)
         const ingredients = document.querySelector('.form-ingredients')
 
         const ingredientRow = document.createElement('li')
@@ -139,12 +139,12 @@ class User {
         ingredientRow.appendChild(unit)
 
         const ingredient = document.createElement('input')
-        ingredient.addEventListener('input', User.addIngredient)
+        ingredient.addEventListener('input', User.addIngredientField)
         ingredientRow.appendChild(ingredient)
     }
 
-    static addDirection(e) {
-        e.target.removeEventListener('input', User.addDirection)
+    static addDirectionField(e) {
+        e.target.removeEventListener('input', User.addDirectionField)
 
         const directions = document.querySelector('.form-directions')
 
@@ -153,7 +153,7 @@ class User {
 
         const direction = document.createElement('textarea')
         direction.classList.add('direction-input')
-        direction.addEventListener('input', User.addDirection)
+        direction.addEventListener('input', User.addDirectionField)
         directionWrapper.appendChild(direction)
     }
 
@@ -166,14 +166,19 @@ class User {
                 name: e.target[0].value,
                 servings: e.target[1].value,
                 description: e.target[2].value,
-                quantities_attributes: Quantity.parseFormIngredients(e),
+                quantities_attributes: Ingredient.parseFormIngredients(e),
                 instructions_attributes: Instruction.parseInstructions(e)
             }
         }
 
         fetch(Page.RECIPES_URL, Page.configObj("POST", body))
             .then(resp => resp.json())
-            .then(recipe => {debugger})
+            .then(recipe => {
+                document.querySelector('.overlay').remove()
+                document.querySelector('.form-wrapper').remove()
+                const newRecipe = new Recipe(recipe)
+                newRecipe.render()
+            })
             .catch(console.log)
     }
 
