@@ -24,13 +24,14 @@ class User {
 
     static login(e) {
         e.preventDefault()
-        const username = e.target.firstElementChild.value
+         const body = {
+            username: e.target.firstElementChild.value
+         }
 
-        fetch(Page.USERS_URL)
+        fetch(Page.LOGIN_URL, Page.configObj('POST', body))
             .then(resp => resp.json())
-            .then(users => {
-                const thisUser = users.find(user => user.username === username)
-                const loggedIn = new User(thisUser)
+            .then(user => {
+                const loggedIn = new User(user)
                 loggedIn.renderUserPortal()
             })
             .catch(console.log)
@@ -74,7 +75,7 @@ class User {
         recipes.id = 'recipe-list'
         contentsWrapper.appendChild(recipes)
 
-        const rightArrow = document.createElement('')
+        const rightArrow = document.createElement('div')
 
         this.recipes.forEach(recipe => recipe.renderIndex(recipes))
 

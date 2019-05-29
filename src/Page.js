@@ -4,6 +4,8 @@ class Page {
 
     static USERS_URL = 'http://localhost:3000/api/v1/users'
 
+    static LOGIN_URL = 'http://localhost:3000/api/v1/login'
+
     static  currentUser = false
 
     static renderLogin() {
