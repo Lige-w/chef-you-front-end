@@ -34,6 +34,9 @@ body {
     border-radius: 2px;
     border: 2px solid darkgoldenrod;
     box-shadow: 2px 2px 5px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
 }
 
 .site-title {
