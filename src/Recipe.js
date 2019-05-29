@@ -5,7 +5,7 @@ class Recipe {
         this.description = params.description
         this.servings = params.servings
         if (!!params.quantities) {this.ingredients = params.quantities.map(ingredient => new Ingredient(ingredient))}
-        if (!!params.instructions) {this.instructions = params.instructions.map(instruction => instruction.description)}
+        if (!!params.instructions) {this.instructions = params.instructions.map(instruction => new Instruction(instruction))}
     }
 
     //render recipe to User Portal
@@ -90,7 +90,7 @@ class Recipe {
 
     renderInstruction(node, instruction) {
         const instructionElement = document.createElement('li')
-        instructionElement.innerText = instruction
+        instructionElement.innerText = instruction.description
         node.appendChild(instructionElement)
     }
 
@@ -159,6 +159,8 @@ class Recipe {
         const ingredients = document.querySelector('.form-ingredients')
 
         const ingredientRow = document.createElement('li')
+        ingredientRow.dataset.quantityId = ingredient.quantityId
+        ingredientRow.dataset.ingredientId = ingredient.ingredientId
         ingredientRow.classList.add('ingredient-input')
         ingredients.appendChild(ingredientRow)
 
@@ -185,7 +187,8 @@ class Recipe {
 
         const direction = document.createElement('textarea')
         direction.classList.add('direction-input')
-        direction.value = instruction
+        direction.dataset.id = instruction.id
+        direction.value = instruction.description
         directionWrapper.appendChild(direction)
     }
 
