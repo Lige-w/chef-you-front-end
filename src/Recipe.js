@@ -206,11 +206,12 @@ class Recipe {
             }
         }
 
-        debugger
-
         fetch(`${Page.RECIPES_URL}/${this.id}`, Page.configObj('PATCH', body))
             .then(resp => resp.json())
-            .then(recipe => {debugger})
+            .then(recipe => {
+                const updatedRecipe = new Recipe(recipe)
+                updatedRecipe.render()
+            })
             .catch(console.log)
 
     }
