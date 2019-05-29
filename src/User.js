@@ -40,17 +40,25 @@ class User {
         root.innerHTML = ''
         root.classList.add('open')
 
+        const pageOne = document.createElement('div')
+        pageOne.classList.add('page-one')
+        root.appendChild(pageOne)
+
         const title = document.createElement('h1')
         title.classList.add('page-title')
         title.innerText = 'The Greatest Recipes in the World'
-        root.appendChild(title)
+        pageOne.appendChild(title)
 
         const author = document.createElement('h3')
         author.innerText = `By ${this.username}`
-        root.appendChild(author)
+        pageOne.appendChild(author)
+
+        const pageTwo = document.createElement('div')
+        pageTwo. classList.add('page-two')
+        root.appendChild(pageTwo)
 
         const contentsWrapper = document.createElement('div')
-        root.appendChild(contentsWrapper)
+        pageTwo.appendChild(contentsWrapper)
 
         const recipeSubheader = document.createElement("h2")
         recipeSubheader.innerText = 'Recipes'

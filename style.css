@@ -20,24 +20,20 @@ body {
     z-index: -1;
 }
 
+
+/*/////// Login Page ////////*/
+
 #root {
+    position: absolute;
     height: 90vh;
     width: 45vw;
     background-color: burlywood;
-    left: 0;
-    top: 0;
-    padding: 20px;
-    margin: 2.5vh auto;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     border-radius: 5px;
     box-shadow: 5px 10px;
 }
-
-#root.open {
-    width: 90vw;
-    background-color: antiquewhite;
-}
-
-/*/////// Login Page ////////*/
 
 .site-title {
 }
@@ -63,6 +59,32 @@ body {
 
 /*/////// User Index ///////*/
 
+#root.open {
+    width: 90vw;
+}
+
+.page-one, .page-two {
+    position: absolute;
+    display: inline-block;
+    width: 39%;
+    height: 95%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px 5%;
+}
+
+.page-one {
+    background: white;
+    background: linear-gradient(90deg, white 94%, gray 99%, black 100%);
+    left: 26%
+}
+
+.page-two {
+    background: white;
+    background: linear-gradient(90deg, black 0%, gray 1%, white 6%);
+    vertical-align: top;
+    left: 74%
+}
 .page-title {
     margin: 0;
 }
@@ -91,23 +113,3 @@ body {
 
     /*/////// Recipe Page /////////*/
 
-.page-one, .page-two {
-    display: inline-block;
-    width: 50%;
-    height: 100%;
-}
-
-.page-one *, .page-two * {
-    padding: 5%
-}
-
-.page-one {
-    background: white;
-    background: linear-gradient(90deg, white 94%, gray 99%, black 100%);
-}
-
-.page-two {
-    background: white;
-    background: linear-gradient(90deg, black 0%, gray 1%, white 6%);
-    vertical-align: top;
-}
