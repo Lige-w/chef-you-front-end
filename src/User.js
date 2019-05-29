@@ -4,6 +4,7 @@ class User {
         this.id = params.id
         this.username = params.username
         this.recipes = params.recipes.map(recipe => new Recipe(recipe))
+        Page.currentUser = this
     }
 
     static register(e) {
@@ -73,6 +74,7 @@ class User {
         recipes.id = 'recipe-list'
         contentsWrapper.appendChild(recipes)
 
+        const rightArrow = document.createElement('')
 
         this.recipes.forEach(recipe => recipe.renderIndex(recipes))
 

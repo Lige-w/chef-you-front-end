@@ -1,12 +1,10 @@
 class Page {
-    constructor(user) {
-        this.user = user
-        Page.loggedIn.user = this.user
-    }
 
     static RECIPES_URL = 'http://localhost:3000/api/v1/recipes'
 
     static USERS_URL = 'http://localhost:3000/api/v1/users'
+
+    static  currentUser = false
 
     static renderLogin() {
         const root = document.getElementById('root')
