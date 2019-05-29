@@ -28,6 +28,7 @@ class Recipe {
             })
     }
 
+    //Render Recipe to recipe show page
     render() {
         const root = document.getElementById('root')
         root.innerHTML = ""
@@ -78,5 +79,9 @@ class Recipe {
         const instructionElement = document.createElement('li')
         instructionElement.innerText = instruction
         node.appendChild(instructionElement)
+    }
+
+    renderEdit(e) {
+
     }
 }
