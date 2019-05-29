@@ -209,7 +209,7 @@ class Recipe {
         debugger
 
         fetch(`${Page.RECIPES_URL}/${this.id}`, Page.configObj('PATCH', body))
-            .then(resp => resp.json)
+            .then(resp => resp.json())
             .then(recipe => {debugger})
             .catch(console.log)
 
