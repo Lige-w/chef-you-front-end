@@ -118,8 +118,16 @@ body {
 
     /*/////// Recipe Page /////////*/
 
-.float-right {
+.control-wrapper {
     position: absolute;
-    left: 85%;
-    top: 4.5%
+    left: 80%;
+    top: 4.5%;
+}
+.edit-link, .delete-link {
+    color: darkgray;
+    margin-right: 5px;
+}
+
+.edit-link:hover, .delete-link:hover{
+    color: black;
 }

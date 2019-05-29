@@ -37,15 +37,23 @@ class Recipe {
         pageOne.classList.add('page-one')
         root.appendChild(pageOne)
 
-
         const title = document.createElement('h1')
         title.classList.add('page-title')
         title.innerText = this.name
         pageOne.appendChild(title)
 
+        const controlWrapper = document.createElement("div")
+        controlWrapper.classList.add('control-wrapper')
+        pageOne.appendChild(controlWrapper)
+
         const editLink = document.createElement('div')
-        editLink.classList.add('far', 'fa-edit', 'float-right')
-        pageOne.appendChild(editLink)
+        editLink.classList.add('far', 'fa-edit', 'edit-link')
+        editLink.addEventListener('click', e => this.renderEdit(e))
+        controlWrapper.appendChild(editLink)
+
+        const deleteLink = document.createElement('div')
+        deleteLink.classList.add('fas', 'fa-trash', 'delete-link')
+        controlWrapper.appendChild(deleteLink)
 
         const description = document.createElement('p')
         description.innerText = this.description
@@ -104,11 +112,11 @@ class Recipe {
 
         const form = document.createElement('form')
         form.classList.add('recipe-form')
-        form.addEventListener('submit', e => this.createRecipe(e))
+        form.addEventListener('submit', e => this.updateRecipe(e))
         formWrapper.appendChild(form)
 
         const name = document.createElement('input')
-        name.placeholder = 'Enter Your Recipe Name'
+        name.value = this.name
         form.appendChild(name)
 
         const servingsWrapper = document.createElement('div')
@@ -116,27 +124,89 @@ class Recipe {
 
         const servings = document.createElement('input')
         servings.type = 'number'
-        servings.placeholder = 'Enter number of servings'
+        servings.value = this.servings
         servingsWrapper.appendChild(servings)
 
         const description = document.createElement('textarea')
-        description.placeholder = "Enter a description of this recipe"
+        description.value = this.description
         form.appendChild(description)
 
         const ingredients = document.createElement('ul')
         ingredients.classList.add('form-ingredients')
         form.appendChild(ingredients)
+
+        this.ingredients.forEach(Recipe.addIngredientField)
+
         User.addIngredientField(e)
 
         const directions = document.createElement('ol')
         directions.classList.add('form-directions')
         form.appendChild(directions)
+
+        this.instructions.forEach(Recipe.addInstructionField)
         User.addDirectionField(e)
 
         const submit = document.createElement('input')
         submit.type = 'submit'
         submit.value = 'Add This Recipe'
         form.appendChild(submit)
+
+    }
+
+    //adds fields for existing ingredients on edit page
+    static addIngredientField(ingredient) {
+
+        const ingredients = document.querySelector('.form-ingredients')
+
+        const ingredientRow = document.createElement('li')
+        ingredientRow.classList.add('ingredient-input')
+        ingredients.appendChild(ingredientRow)
+
+        const qty = document.createElement('input')
+        qty.type = 'number'
+        qty.value = ingredient.amount
+        ingredientRow.appendChild(qty)
+
+        const unit = document.createElement('input')
+        unit.value = ingredient.unit
+        ingredientRow.appendChild(unit)
+
+        const ingredientInput = document.createElement('input')
+        ingredientInput.value = ingredient.name
+        ingredientRow.appendChild(ingredientInput)
+    }
+
+    // adds fields for existing instructions
+    static addInstructionField(instruction) {
+        const directions = document.querySelector('.form-directions')
+
+        const directionWrapper = document.createElement('li')
+        directions.appendChild(directionWrapper)
+
+        const direction = document.createElement('textarea')
+        direction.classList.add('direction-input')
+        direction.value = instruction
+        directionWrapper.appendChild(direction)
+    }
+
+    updateRecipe(e) {
+        e.preventDefault()
+
+        const body = {
+            recipe: {
+                user_id: Page.currentUser.id,
+                name: e.target[0].value,
+                servings: e.target[1].value,
+                description: e.target[2].value,
+                quantities_attributes: Ingredient.parseFormIngredients(e),
+                instructions_attributes: Instruction.parseInstructions(e)
+            }
+        }
+
+        fetch(`${Page.RECIPES_URL}/${this.id}`, Page.configObj('PATCH', body))
+            .then(resp => resp.json)
+            .then(recipe => {debugger})
+            .catch(console.log)
 
     }
 }
