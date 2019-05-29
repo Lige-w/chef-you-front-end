@@ -1,6 +1,7 @@
 class Ingredient {
 
     constructor(params) {
+        this.id = params.id
         this.name = params.name
         this.unit = params.unit
         this.amount = params.amount
