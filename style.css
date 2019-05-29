@@ -39,9 +39,6 @@ body {
     hyphens: auto;
 }
 
-.site-title {
-}
-
 
 .login-wrapper {
     height:auto;
@@ -94,6 +91,9 @@ body {
     box-shadow: 4px 3px 9px 4px;
 }
 
+.page-title {
+}
+
 /*////// Recipe Form ///////*/
 
 .overlay {
@@ -118,3 +118,8 @@ body {
 
     /*/////// Recipe Page /////////*/
 
+.float-right {
+    position: absolute;
+    left: 85%;
+    top: 4.5%
+}
