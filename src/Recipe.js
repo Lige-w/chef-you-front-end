@@ -85,7 +85,6 @@ class Recipe {
         pageTwo.appendChild(instructions)
 
         this.instructions.forEach(instruction => this.renderInstruction(instructions, instruction))
-
     }
 
     renderInstruction(node, instruction) {
@@ -175,6 +174,7 @@ class Recipe {
 
         const ingredientInput = document.createElement('input')
         ingredientInput.value = ingredient.name
+        ingredientRow.addEventListener('input', () => delete(ingredientRow.dataset.ingredientId))
         ingredientRow.appendChild(ingredientInput)
     }
 
@@ -205,6 +205,8 @@ class Recipe {
                 instructions_attributes: Instruction.parseInstructions(e)
             }
         }
+
+        debugger
 
         fetch(`${Page.RECIPES_URL}/${this.id}`, Page.configObj('PATCH', body))
             .then(resp => resp.json)

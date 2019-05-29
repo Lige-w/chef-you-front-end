@@ -1,16 +1,21 @@
 class Instruction {
 
     constructor(params){
-        this.quantityId = params.id
-        this.ingredientId = params.ingredient_id
+        this.id = params.id
         this.description = params.description
     }
 
     static parseInstructions(e) {
         const instructionNodes = e.target.querySelectorAll('.direction-input')
-        const filteredNodes = [...instructionNodes].filter(node => !!node.value)
+        const filteredNodes = [...instructionNodes].filter(node => !!node.value || !!node.dataset.id)
         return filteredNodes.map(node => {
-            return {description: node.value}
+            const instructionParams =  {
+                description: node.value
+            }
+
+            if (!!node.dataset.id) {instructionParams.id = node.dataset.id}
+
+            return instructionParams
         })
     }
 }
