@@ -31,8 +31,9 @@ body {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    border-radius: 5px;
-    box-shadow: 5px 10px;
+    border-radius: 2px;
+    border: 2px solid darkgoldenrod;
+    box-shadow: 2px 2px 5px;
 }
 
 .site-title {
@@ -70,23 +71,24 @@ body {
     height: 95%;
     top: 50%;
     transform: translate(-50%, -50%);
-    padding: 10px 5%;
+    padding: 0 5%;
+    border-radius: 1px;
 }
 
 .page-one {
     background: white;
-    background: linear-gradient(90deg, white 94%, gray 99%, black 100%);
-    left: 26%
+    background: linear-gradient(90deg, white 90%, lightgray 96%, gray 99%, black 100%);
+    left: 26%;
+    box-shadow: -4px 3px 9px 4px;
 }
 
 .page-two {
     background: white;
-    background: linear-gradient(90deg, black 0%, gray 1%, white 6%);
+    background: linear-gradient(90deg, black 0%, gray 1%, lightgray 4%, white 10%);
     vertical-align: top;
-    left: 74%
-}
-.page-title {
-    margin: 0;
+    left: 74%;
+    overflow: scroll;
+    box-shadow: 4px 3px 9px 4px;
 }
 
 /*////// Recipe Form ///////*/
