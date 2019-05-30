@@ -5,6 +5,9 @@ body {
     /*background-color: black;*/
 }
 
+ul {
+    list-style: none;
+}
 
 #background {
     position: fixed;
@@ -27,12 +30,13 @@ body {
     position: absolute;
     height: 90vh;
     width: 45vw;
-    background-color: burlywood;
+    background-color: #995d16;
+    background: linear-gradient(90deg, #995d16 1%, #4e300c 4%, #995d16 7%);
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     border-radius: 2px;
-    border: 2px solid darkgoldenrod;
+    border: 2px solid #4e300c;
     box-shadow: 2px 2px 5px;
     overflow-wrap: break-word;
     word-wrap: break-word;
@@ -45,6 +49,7 @@ body {
     margin:auto;
     padding: 30vh 0;
     text-align: center;
+    color: gold;
 }
 
 .form {
@@ -62,6 +67,7 @@ body {
 
 #root.open {
     width: 90vw;
+    background: linear-gradient(90deg, #995d16 44%, #4e300c 47%, #995d16 49%, #995d16 51%, #4e300c 53%, #995d16 56%);
 }
 
 .page-one, .page-two {
@@ -82,6 +88,14 @@ body {
     box-shadow: -4px 3px 9px 4px;
 }
 
+.title-wrapper {
+    position: relative;
+    text-align: center;
+    left: 0;
+    right: 0;
+    top: 30%;
+}
+
 .page-two {
     background: white;
     background: linear-gradient(90deg, black 0%, gray 1%, lightgray 4%, white 10%);
@@ -95,6 +109,11 @@ body {
     display: inline-block;
     cursor: pointer;
 }
+
+.page-two a:hover, #recipe-list h3:hover {
+    color: darkgray;
+}
+
 
 a {
     cursor: pointer;
@@ -184,16 +203,21 @@ a {
 }
     /*/////// Recipe Page /////////*/
 
-.control-wrapper {
+.control-wrapper{
     position: absolute;
     left: 80%;
     top: 4.5%;
+}
+
+.control-wrapper i{
+    font-size: 1em;
 }
 
 i {
     color: darkgray;
     margin-right: 5px;
     cursor: pointer;
+    font-size: 1.5em;
 }
 
 i:hover {
