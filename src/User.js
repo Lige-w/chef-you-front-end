@@ -89,7 +89,7 @@ class User {
 
 
         const formWrapper = document.createElement('div')
-        formWrapper.classList.add('form-wrapper')
+        formWrapper.classList.add('form-wrapper', 'modal')
         body.appendChild(formWrapper)
 
         const pageTitle = document.createElement('h1')
@@ -148,14 +148,17 @@ class User {
         ingredients.appendChild(ingredientRow)
 
         const qty = document.createElement('input')
+        qty.placeholder = 'Amount'
         qty.type = 'number'
         ingredientRow.appendChild(qty)
 
         const unit = document.createElement('input')
+        unit.placeholder = 'Unit of measure'
         ingredientRow.appendChild(unit)
 
         const ingredient = document.createElement('input')
         ingredient.addEventListener('input', User.addIngredientField)
+        ingredient.placeholder = 'Ingredient'
         ingredientRow.appendChild(ingredient)
     }
 
@@ -169,6 +172,7 @@ class User {
 
         const direction = document.createElement('textarea')
         direction.classList.add('direction-input')
+        direction.placeholder = 'Add an instruction step'
         direction.addEventListener('input', User.addDirectionField)
         directionWrapper.appendChild(direction)
     }

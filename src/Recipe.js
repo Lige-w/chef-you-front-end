@@ -106,12 +106,12 @@ class Recipe {
         body.appendChild(overlay)
 
         const formWrapper = document.createElement('div')
-        formWrapper.classList.add('form-wrapper')
+        formWrapper.classList.add('form-wrapper', 'modal')
         body.appendChild(formWrapper)
 
         const pageTitle = document.createElement('h1')
         pageTitle.classList.add('page-title')
-        pageTitle.innerText = 'Add A New Recipe'
+        pageTitle.innerText = 'Edit Recipe'
         formWrapper.appendChild(pageTitle)
 
         const form = document.createElement('form')
@@ -156,7 +156,7 @@ class Recipe {
 
         const submit = document.createElement('input')
         submit.type = 'submit'
-        submit.value = 'Add This Recipe'
+        submit.value = 'Edit This Recipe'
         submitWrapper.appendChild(submit)
 
     }
@@ -239,6 +239,7 @@ class Recipe {
 
         const choicesWrapper = document.createElement('div')
         choicesWrapper.innerText = `Are you sure you want to delete ${this.name}?`
+        choicesWrapper.classList.add('modal')
         deleteWrapper.appendChild(choicesWrapper)
 
         const yes = document.createElement('button')
@@ -249,13 +250,15 @@ class Recipe {
     }
 
     deleteRecipe(e) {
-        debugger
 
         fetch(`${Page.RECIPES_URL}/${this.id}`, Page.configObj('DELETE', {}))
-            .then(() => {
-                debugger
-                Page.currentUser.recipes
-                Page.currentUser.render()
+            .then((resp) => resp.json())
+            .then(user => {
+                document.querySelector('.overlay').remove()
+                document.querySelector('#delete-wrapper').remove()
+                user = new User(user)
+                Page.currentUser = user
+                user.renderUserPortal()
             })
             .catch(console.log)
 
