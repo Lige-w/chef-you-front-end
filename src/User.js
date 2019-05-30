@@ -82,15 +82,20 @@ class User {
     }
 
     renderRecipeForm(e) {
-        const root = document.getElementById('root')
+        const body = document.querySelector('body')
 
         const overlay = document.createElement('div')
         overlay.classList.add('overlay')
-        root.appendChild(overlay)
+        overlay.addEventListener('click', e => {
+            e.target.nextElementSibling.remove()
+            e.target.remove()
+        })
+        body.appendChild(overlay)
+
 
         const formWrapper = document.createElement('div')
         formWrapper.classList.add('form-wrapper')
-        root.appendChild(formWrapper)
+        body.appendChild(formWrapper)
 
         const pageTitle = document.createElement('h1')
         pageTitle.classList.add('page-title')
@@ -101,6 +106,7 @@ class User {
         form.classList.add('recipe-form')
         form.addEventListener('submit', e => this.createRecipe(e))
         formWrapper.appendChild(form)
+
 
         const name = document.createElement('input')
         name.placeholder = 'Enter Your Recipe Name'
@@ -128,10 +134,14 @@ class User {
         form.appendChild(directions)
         User.addDirectionField(e)
 
+        const submitWrapper = document.createElement('div')
+        submitWrapper.classList.add('submit')
+        form.appendChild(submitWrapper)
+
         const submit = document.createElement('input')
         submit.type = 'submit'
         submit.value = 'Add This Recipe'
-        form.appendChild(submit)
+        submitWrapper.appendChild(submit)
     }
 
     static addIngredientField(e) {
