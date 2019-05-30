@@ -38,8 +38,6 @@ class Recipe {
     render() {
         this.setCurrentPage()
 
-        debugger
-
         const root = document.getElementById('root')
         root.innerHTML = ""
 
