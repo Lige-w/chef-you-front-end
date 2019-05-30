@@ -4,8 +4,14 @@ class Recipe {
         this.name = params.name
         this.description = params.description
         this.servings = params.servings
-        if (!!params.quantities) {this.ingredients = params.quantities.map(ingredient => new Ingredient(ingredient))}
-        if (!!params.instructions) {this.instructions = params.instructions.map(instruction => new Instruction(instruction))}
+        if (!!params.quantities) {
+            this.ingredients = params.quantities.map(ingredient => new Ingredient(ingredient))
+                .sort((a, b) => a.quantityId - b.quantityId)
+        }
+        if (!!params.instructions) {
+            this.instructions = params.instructions.map(instruction => new Instruction(instruction))
+                .sort((a, b) => a.id - b.id)
+        }
     }
 
     //render recipe to User Portal
@@ -31,6 +37,8 @@ class Recipe {
     //Render Recipe to recipe show page
     render() {
         this.setCurrentPage()
+
+        debugger
 
         const root = document.getElementById('root')
         root.innerHTML = ""

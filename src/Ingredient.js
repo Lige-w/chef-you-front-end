@@ -17,7 +17,7 @@ class Ingredient {
                     name: node.children[2].value
                 },
                 amount: node.children[0].value,
-                unit: node.children[1].value
+                unit: Ingredient.parseUnit(node.children[1].value, node.children[0].value)
             }
 
             if(!!node.dataset.quantityId) {ingredientParams.id = node.dataset.quantityId}
@@ -25,6 +25,48 @@ class Ingredient {
 
             return ingredientParams
         })
+    }
+
+    static parseUnit(unit, amount) {
+        switch(unit.toLowerCase().trim()) {
+            case 'tsp':
+            case 'tea spoon':
+            case 'teaspoon':
+            case 'tea spoons':
+            case 'teaspoons':
+                unit = amount > 1 ? 'teaspoons' : 'teaspoon'
+                break
+            case 'c':
+            case 'cup':
+
+            case 'cups':
+                unit = amount > 1 ? 'cups' : 'cup'
+                break
+            case 'tbs':
+            case 'tb':
+            case 'table spoon':
+            case 'tablespoon':
+            case 'table spoons':
+            case 'tablespoons':
+                unit = amount > 1 ? 'tablespoons' : 'tablespoon'
+                break
+            case 't':
+                if (unit === 'T') {
+                    unit = amount > 1 ? 'tablespoons' : 'tablespoon'
+                } else {
+                    unit = amount > 1 ? 'teaspoons' : 'teaspoon'
+                }
+                break
+            case 'lb':
+            case 'lbs':
+            case 'pounds':
+            case 'pound':
+                unit = amount > 1 ? 'cups' : 'cup'
+                break
+            default:
+                unit.trim()
+        }
+        return unit
     }
 
     renderQuantities(node) {
