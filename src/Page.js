@@ -23,6 +23,10 @@ class Page {
         siteTitle.innerText = "Chef You"
         formWrapper.appendChild(siteTitle)
 
+        const by = document.createElement('p')
+        by.innerText = 'by'
+        formWrapper.appendChild(by)
+
         const loginForm = document.createElement('form')
         loginForm.classList.add('form', 'login')
         loginForm.addEventListener('submit', User.login)

@@ -48,14 +48,18 @@ class User {
         pageOne.classList.add('page-one')
         root.appendChild(pageOne)
 
+        const titleWrapper = document.createElement('div')
+        titleWrapper.classList.add('title-wrapper')
+        pageOne.appendChild(titleWrapper)
+
         const title = document.createElement('h1')
         title.classList.add('page-title')
-        title.innerText = 'The Greatest Recipes in the World'
-        pageOne.appendChild(title)
+        title.innerText = 'Chef You'
+        titleWrapper.appendChild(title)
 
         const author = document.createElement('h3')
-        author.innerText = `By ${this.username}`
-        pageOne.appendChild(author)
+        author.innerText = `by ${this.username}`
+        titleWrapper.appendChild(author)
 
         const pageTwo = document.createElement('div')
         pageTwo. classList.add('page-two')

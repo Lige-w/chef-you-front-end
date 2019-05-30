@@ -63,7 +63,7 @@ class Recipe {
         pageOne.appendChild(description)
 
         const servings = document.createElement('p')
-        servings.innerHTML = `<em>Makes ${this.servings} servings</em>`
+        servings.innerHTML = `<em>Makes ${this.servings} ${this.servings === 1 ? 'serving' : 'servings'}</em>`
         pageOne.appendChild(servings)
 
 
