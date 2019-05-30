@@ -84,12 +84,7 @@ class User {
     renderRecipeForm(e) {
         const body = document.querySelector('body')
 
-        const overlay = document.createElement('div')
-        overlay.classList.add('overlay')
-        overlay.addEventListener('click', e => {
-            e.target.nextElementSibling.remove()
-            e.target.remove()
-        })
+        const overlay = Page.renderOverlay()
         body.appendChild(overlay)
 
 

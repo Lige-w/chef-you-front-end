@@ -78,6 +78,17 @@ class Page {
         }
     }
 
+    static renderOverlay() {
+        const overlay = document.createElement('div')
+        overlay.classList.add('overlay')
+        overlay.addEventListener('click', e => {
+            e.target.nextElementSibling.remove()
+            e.target.remove()
+        })
+
+        return overlay
+    }
+
 
 
 }

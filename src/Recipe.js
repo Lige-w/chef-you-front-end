@@ -53,6 +53,7 @@ class Recipe {
 
         const deleteLink = document.createElement('div')
         deleteLink.classList.add('fas', 'fa-trash', 'delete-link')
+        deleteLink.addEventListener('click', e => this.renderDeleteModal(e))
         controlWrapper.appendChild(deleteLink)
 
         const description = document.createElement('p')
@@ -227,6 +228,36 @@ class Recipe {
     }
 
     renderDeleteModal(e) {
+        const body = document.querySelector('body')
+
+        const overlay = Page.renderOverlay()
+        body.appendChild(overlay)
+
+        const deleteWrapper = document.createElement('div')
+        deleteWrapper.id = 'delete-wrapper'
+        body.appendChild(deleteWrapper)
+
+        const choicesWrapper = document.createElement('div')
+        choicesWrapper.innerText = `Are you sure you want to delete ${this.name}?`
+        deleteWrapper.appendChild(choicesWrapper)
+
+        const yes = document.createElement('button')
+        yes.innerText = "Yes, delete this recipe."
+        yes.addEventListener('click', e => this.deleteRecipe(e))
+        choicesWrapper.appendChild(yes)
+
+    }
+
+    deleteRecipe(e) {
+        debugger
+
+        fetch(`${Page.RECIPES_URL}/${this.id}`, Page.configObj('DELETE', {}))
+            .then(() => {
+                debugger
+                Page.currentUser.recipes
+                Page.currentUser.render()
+            })
+            .catch(console.log)
 
     }
 }
