@@ -189,13 +189,14 @@ a {
     left: 80%;
     top: 4.5%;
 }
-.edit-link, .delete-link {
+
+i {
     color: darkgray;
     margin-right: 5px;
     cursor: pointer;
 }
 
-.edit-link:hover, .delete-link:hover{
+i:hover {
     color: black;
 }
 

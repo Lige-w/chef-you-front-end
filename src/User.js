@@ -38,6 +38,8 @@ class User {
     }
 
     renderUserPortal() {
+        Page.currentPage = 0
+
         const root = document.getElementById('root')
         root.innerHTML = ''
         root.classList.add('open')
@@ -75,10 +77,9 @@ class User {
         recipes.id = 'recipe-list'
         contentsWrapper.appendChild(recipes)
 
-        const rightArrow = document.createElement('div')
-
         this.recipes.forEach(recipe => recipe.renderIndex(recipes))
 
+        this.renderRightArrow()
     }
 
     renderRecipeForm(e) {
@@ -163,9 +164,41 @@ class User {
                 document.querySelector('.overlay').remove()
                 document.querySelector('.form-wrapper').remove()
                 const newRecipe = new Recipe(recipe)
+                Page.currentUser.recipes.push(newRecipe)
                 newRecipe.render()
             })
             .catch(console.log)
+    }
+
+    renderRightArrow() {
+        const pageTwo = document.querySelector('.page-two')
+        const rightArrow = document.createElement('i')
+        rightArrow.classList.add('fas', 'fa-long-arrow-alt-right', 'arrow-right')
+        rightArrow.addEventListener('click', e => this.nextPage(e))
+        pageTwo.appendChild(rightArrow)
+    }
+
+    renderLeftArrow() {
+        const pageOne = document.querySelector('.page-one')
+        const rightArrow = document.createElement('i')
+        rightArrow.classList.add('fas', 'fa-long-arrow-alt-left', 'arrow-left')
+        rightArrow.addEventListener('click', e => this.previousPage(e))
+        pageOne.appendChild(rightArrow)
+    }
+
+
+    nextPage(e){
+        this.recipes[Page.currentPage].getRecipe(e)
+        Page.currentPage++
+    }
+
+    previousPage(e) {
+        if (Page.currentPage > 1) {
+            Page.currentPage--
+            this.recipes[Page.currentPage].getRecipe(e)
+        } else {
+            this.renderUserPortal()
+        }
     }
 
 }
