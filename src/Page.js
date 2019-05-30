@@ -8,6 +8,8 @@ class Page {
 
     static  currentUser = false
 
+    static currentPage = null
+
     static renderLogin() {
         const root = document.getElementById('root')
         root.innerHTML = ''

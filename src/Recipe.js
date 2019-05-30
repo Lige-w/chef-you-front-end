@@ -46,12 +46,12 @@ class Recipe {
         controlWrapper.classList.add('control-wrapper')
         pageOne.appendChild(controlWrapper)
 
-        const editLink = document.createElement('div')
+        const editLink = document.createElement('i')
         editLink.classList.add('far', 'fa-edit', 'edit-link')
         editLink.addEventListener('click', e => this.renderEdit(e))
         controlWrapper.appendChild(editLink)
 
-        const deleteLink = document.createElement('div')
+        const deleteLink = document.createElement('i')
         deleteLink.classList.add('fas', 'fa-trash', 'delete-link')
         deleteLink.addEventListener('click', e => this.renderDeleteModal(e))
         controlWrapper.appendChild(deleteLink)
@@ -86,6 +86,15 @@ class Recipe {
         pageTwo.appendChild(instructions)
 
         this.instructions.forEach(instruction => this.renderInstruction(instructions, instruction))
+
+        Page.currentUser.renderLeftArrow()
+
+        if (Page.currentPage < Page.currentUser.recipes.length) {Page.currentUser.renderRightArrow()}
+
+        const home = document.createElement('i')
+        home.classList.add('fas', 'fa-home')
+        home.addEventListener('click', () => Page.currentUser.renderUserPortal())
+        pageOne.appendChild(home)
     }
 
     renderInstruction(node, instruction) {
@@ -228,8 +237,13 @@ class Recipe {
             .then(recipe => {
                 document.querySelector('.overlay').remove()
                 document.querySelector('.form-wrapper').remove()
-                const updatedRecipe = new Recipe(recipe)
-                updatedRecipe.render()
+
+                const userRecipes = Page.currentUser.recipes
+                const index = userRecipes.indexOf(userRecipes.find(userRecipe => userRecipe.id === recipe.id))
+
+                userRecipes[index] = new Recipe(recipe)
+
+                userRecipes[index].render()
             })
             .catch(console.log)
 
