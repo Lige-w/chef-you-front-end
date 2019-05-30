@@ -120,7 +120,6 @@ class User {
 
         const qty = document.createElement('input')
         qty.placeholder = 'Amount'
-        qty.type = 'number'
         ingredientRow.appendChild(qty)
 
         const unit = document.createElement('input')
