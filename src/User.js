@@ -180,10 +180,20 @@ class User {
 
     renderLeftArrow() {
         const pageOne = document.querySelector('.page-one')
-        const rightArrow = document.createElement('i')
-        rightArrow.classList.add('fas', 'fa-long-arrow-alt-left', 'arrow-left')
-        rightArrow.addEventListener('click', e => this.previousPage(e))
-        pageOne.appendChild(rightArrow)
+
+        const navContainer = document.createElement('div')
+        navContainer.classList.add('nav-container')
+        pageOne.appendChild(navContainer)
+
+        const leftArrow = document.createElement('i')
+        leftArrow.classList.add('fas', 'fa-long-arrow-alt-left', 'arrow-left')
+        leftArrow.addEventListener('click', e => this.previousPage(e))
+        navContainer.appendChild(leftArrow)
+
+        const home = document.createElement('i')
+        home.classList.add('fas', 'fa-home', 'home-icon')
+        home.addEventListener('click', () => Page.currentUser.renderUserPortal())
+        navContainer.appendChild(home)
     }
 
 
@@ -195,7 +205,7 @@ class User {
     previousPage(e) {
         if (Page.currentPage > 1) {
             Page.currentPage--
-            this.recipes[Page.currentPage].getRecipe(e)
+            this.recipes[Page.currentPage - 1].getRecipe(e)
         } else {
             this.renderUserPortal()
         }

@@ -200,6 +200,16 @@ i:hover {
     color: black;
 }
 
+.arrow-right, .nav-container {
+    position: absolute;
+    top: 95%;
+    left: 4%;
+}
+
+i.arrow-right {
+    left: 92%
+}
+
 #delete-wrapper {
     position: absolute;
     text-align: center;
