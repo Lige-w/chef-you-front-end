@@ -176,3 +176,19 @@ body {
 .edit-link:hover, .delete-link:hover{
     color: black;
 }
+
+#delete-wrapper {
+    position: absolute;
+    text-align: center;
+    left: 50vw;
+    top: 30vh;
+    z-index: 3;
+}
+
+#delete-wrapper div {
+    position: relative;
+    overflow: scroll;
+    right: 50%;
+    background-color: white;
+    padding: 20px;
+}
