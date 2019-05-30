@@ -97,46 +97,12 @@ class User {
         pageTitle.innerText = 'Add A New Recipe'
         formWrapper.appendChild(pageTitle)
 
-        const form = document.createElement('form')
-        form.classList.add('recipe-form')
+        const form = Page.formElement(e)
         form.addEventListener('submit', e => this.createRecipe(e))
         formWrapper.appendChild(form)
 
-
-        const name = document.createElement('input')
-        name.placeholder = 'Enter Your Recipe Name'
-        form.appendChild(name)
-
-        const servingsWrapper = document.createElement('div')
-        form.appendChild(servingsWrapper)
-
-        const servings = document.createElement('input')
-        servings.type = 'number'
-        servings.placeholder = 'Enter number of servings'
-        servingsWrapper.appendChild(servings)
-
-        const description = document.createElement('textarea')
-        description.placeholder = "Enter a description of this recipe"
-        form.appendChild(description)
-
-        const ingredients = document.createElement('ul')
-        ingredients.classList.add('form-ingredients')
-        form.appendChild(ingredients)
         User.addIngredientField(e)
-
-        const directions = document.createElement('ol')
-        directions.classList.add('form-directions')
-        form.appendChild(directions)
         User.addDirectionField(e)
-
-        const submitWrapper = document.createElement('div')
-        submitWrapper.classList.add('submit')
-        form.appendChild(submitWrapper)
-
-        const submit = document.createElement('input')
-        submit.type = 'submit'
-        submit.value = 'Add This Recipe'
-        submitWrapper.appendChild(submit)
     }
 
     static addIngredientField(e) {
