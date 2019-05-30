@@ -38,7 +38,7 @@ class User {
     }
 
     renderUserPortal() {
-        Page.currentPage = 0
+        Page.currentPage = -1
 
         const root = document.getElementById('root')
         root.innerHTML = ''
@@ -198,13 +198,11 @@ class User {
 
 
     nextPage(e){
-        this.recipes[Page.currentPage].getRecipe(e)
-        Page.currentPage++
+        this.recipes[Page.currentPage + 1].getRecipe(e)
     }
 
     previousPage(e) {
-        if (Page.currentPage > 1) {
-            Page.currentPage--
+        if (Page.currentPage > 0) {
             this.recipes[Page.currentPage - 1].getRecipe(e)
         } else {
             this.renderUserPortal()

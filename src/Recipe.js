@@ -30,6 +30,8 @@ class Recipe {
 
     //Render Recipe to recipe show page
     render() {
+        this.setCurrentPage()
+
         const root = document.getElementById('root')
         root.innerHTML = ""
 
@@ -89,7 +91,7 @@ class Recipe {
 
         Page.currentUser.renderLeftArrow()
 
-        if (Page.currentPage < Page.currentUser.recipes.length) {Page.currentUser.renderRightArrow()}
+        if (Page.currentPage + 1 < Page.currentUser.recipes.length) {Page.currentUser.renderRightArrow()}
 
     }
 
@@ -281,4 +283,11 @@ class Recipe {
             .catch(console.log)
 
     }
+
+    setCurrentPage () {
+        const userRecipes = Page.currentUser.recipes
+        const index = userRecipes.indexOf(userRecipes.find(recipe => recipe.id === this.id))
+        Page.currentPage = index
+    }
+
 }
