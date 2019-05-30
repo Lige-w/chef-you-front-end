@@ -54,13 +54,24 @@ ul {
 
 .form {
     width:40%;
-    margin: auto;
+    margin: 0 auto;
     text-wrap: none;
 }
 
 .form input {
-    margin: auto;
+    margin: 0 auto 10px;
+    display: block;
+
+}
+
+.username {
     width: 100%;
+    font-size: 1em;
+}
+
+form.login .login-button {
+    color: #995d16;
+    background-color: gold;
 }
 
 /*/////// User Index ///////*/
@@ -181,7 +192,7 @@ a {
     text-align: center;
 }
 
-.form-wrapper div.submit input, #delete-wrapper button {
+.form-wrapper div.submit input, #delete-wrapper button, .login-button{
     padding: 10px;
     margin: 10px;
     font-size: 1em;
@@ -192,7 +203,7 @@ a {
     cursor: pointer;
 }
 
-.form-wrapper div.submit input:hover, #delete-wrapper button:hover {
+.form-wrapper div.submit input:hover, #delete-wrapper button:hover{
     color: darkgray;
     background-color: black;
 }

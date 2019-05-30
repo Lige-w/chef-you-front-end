@@ -33,12 +33,14 @@ class Page {
         formWrapper.appendChild(loginForm)
 
         const usernameInput = document.createElement('input')
+        usernameInput.classList.add('username')
         usernameInput.placeholder = 'Please Enter Your Username'
         loginForm.appendChild(usernameInput)
 
         const submit = document.createElement('input')
         submit.type = 'submit'
         submit.value = 'Login'
+        submit.classList.add('login-button')
         loginForm.appendChild(submit)
 
         const registerLink = document.createElement("a")
