@@ -93,6 +93,11 @@ body {
 
 #recipe-list h3 {
     display: inline-block;
+    cursor: pointer;
+}
+
+a {
+    cursor: pointer;
 }
 
 /*////// Recipe Form ///////*/
@@ -105,7 +110,7 @@ body {
     width: 100vw;
     background-color: black;
     opacity: .5;
-
+    cursor: pointer;
 }
 
 .form-wrapper {
@@ -142,6 +147,10 @@ body {
     margin-top: 2px;
 }
 
+.form-wrapper ol {
+    position: relative;
+    top: -35px;
+}
 .form-wrapper ol textarea {
     width: 93%;
     vertical-align: text-bottom;
@@ -153,13 +162,20 @@ body {
     text-align: center;
 }
 
-.form-wrapper div.submit input {
+.form-wrapper div.submit input, #delete-wrapper button {
     padding: 10px;
     margin: 10px;
+    font-size: 1em;
     width: fit-content;
-    border: 2px solid darkgray;
+    border: none;
     border-radius: 5px;
     background-color: darkgray;
+    cursor: pointer;
+}
+
+.form-wrapper div.submit input:hover, #delete-wrapper button:hover {
+    color: darkgray;
+    background-color: black;
 }
 
 .modal {
@@ -176,6 +192,7 @@ body {
 .edit-link, .delete-link {
     color: darkgray;
     margin-right: 5px;
+    cursor: pointer;
 }
 
 .edit-link:hover, .delete-link:hover{
@@ -196,4 +213,9 @@ body {
     right: 50%;
     background-color: white;
     padding: 20px;
+}
+
+#delete-wrapper button {
+    display: block;
+    margin: 10px auto 0 auto
 }

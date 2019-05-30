@@ -135,6 +135,10 @@ class Recipe {
         description.value = this.description
         form.appendChild(description)
 
+        const ingredientsHeader = document.createElement('h3')
+        ingredientsHeader.innerText = 'Ingredients'
+        form.appendChild(ingredientsHeader)
+
         const ingredients = document.createElement('ul')
         ingredients.classList.add('form-ingredients')
         form.appendChild(ingredients)
@@ -142,6 +146,10 @@ class Recipe {
         this.ingredients.forEach(Recipe.addIngredientField)
 
         User.addIngredientField(e)
+
+        const instructionsHeader = document.createElement('h3')
+        instructionsHeader.innerText = 'Instructions'
+        form.appendChild(instructionsHeader)
 
         const directions = document.createElement('ol')
         directions.classList.add('form-directions')
