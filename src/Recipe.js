@@ -91,10 +91,6 @@ class Recipe {
 
         if (Page.currentPage < Page.currentUser.recipes.length) {Page.currentUser.renderRightArrow()}
 
-        const home = document.createElement('i')
-        home.classList.add('fas', 'fa-home')
-        home.addEventListener('click', () => Page.currentUser.renderUserPortal())
-        pageOne.appendChild(home)
     }
 
     renderInstruction(node, instruction) {
