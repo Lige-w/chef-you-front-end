@@ -194,7 +194,6 @@ class Recipe {
         ingredients.appendChild(ingredientRow)
 
         const qty = document.createElement('input')
-        qty.type = 'number'
         qty.value = ingredient.amount
         ingredientRow.appendChild(qty)
 
