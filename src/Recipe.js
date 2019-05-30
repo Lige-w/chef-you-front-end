@@ -11,11 +11,11 @@ class Recipe {
     //render recipe to User Portal
     renderIndex(node) {
         const listItem = document.createElement('li')
-        listItem.addEventListener('click', e => this.getRecipe(e))
         node.appendChild(listItem)
 
         const title = document.createElement('h3')
         title.innerText = this.name
+        title.addEventListener('click', e => this.getRecipe(e))
         listItem.appendChild(title)
     }
 
@@ -94,15 +94,19 @@ class Recipe {
     }
 
     renderEdit(e) {
-        const root = document.getElementById('root')
+        const body = document.querySelector('body')
 
         const overlay = document.createElement('div')
         overlay.classList.add('overlay')
-        root.appendChild(overlay)
+        overlay.addEventListener('click', e => {
+            e.target.nextElementSibling.remove()
+            e.target.remove()
+        })
+        body.appendChild(overlay)
 
         const formWrapper = document.createElement('div')
         formWrapper.classList.add('form-wrapper')
-        root.appendChild(formWrapper)
+        body.appendChild(formWrapper)
 
         const pageTitle = document.createElement('h1')
         pageTitle.classList.add('page-title')
@@ -145,10 +149,14 @@ class Recipe {
         this.instructions.forEach(Recipe.addInstructionField)
         User.addDirectionField(e)
 
+        const submitWrapper = document.createElement('div')
+        submitWrapper.classList.add('submit')
+        form.appendChild(submitWrapper)
+
         const submit = document.createElement('input')
         submit.type = 'submit'
         submit.value = 'Add This Recipe'
-        form.appendChild(submit)
+        submitWrapper.appendChild(submit)
 
     }
 
@@ -209,10 +217,16 @@ class Recipe {
         fetch(`${Page.RECIPES_URL}/${this.id}`, Page.configObj('PATCH', body))
             .then(resp => resp.json())
             .then(recipe => {
+                document.querySelector('.overlay').remove()
+                document.querySelector('.form-wrapper').remove()
                 const updatedRecipe = new Recipe(recipe)
                 updatedRecipe.render()
             })
             .catch(console.log)
+
+    }
+
+    renderDeleteModal(e) {
 
     }
 }
