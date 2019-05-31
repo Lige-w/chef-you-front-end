@@ -1,7 +1,11 @@
 /*/////// Style for full site ///////*/
 
 * {
-    font-family: sans-serif;
+    font-family: "Arial Rounded", sans-serif;
+}
+
+h1, h2, h3 {
+    font-family: Damascus, serif;
 }
 
 body {
@@ -281,7 +285,13 @@ i.arrow-right {
     text-align: center;
     left: 50vw;
     top: 30vh;
+    animation: delete-modal 250ms ease-out;
     z-index: 3;
+}
+
+#delete-wrapper.remove {
+    animation: remove-delete-modal 250ms ease-in;
+    top: -15vh;
 }
 
 #delete-wrapper div {
@@ -296,4 +306,16 @@ i.arrow-right {
 #delete-wrapper button {
     display: block;
     margin: 10px auto 0 auto
+}
+
+/*//////// Animation /////////*/
+
+@keyframes delete-modal {
+    from {top: -15vh}
+    to {top: 30vh}
+}
+
+@keyframes remove-delete-modal {
+    from {top: 30vh}
+    to {top: -15vh}
 }

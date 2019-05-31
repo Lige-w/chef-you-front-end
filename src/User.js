@@ -72,10 +72,10 @@ class User {
         recipeSubheader.innerText = 'Recipes'
         contentsWrapper.appendChild(recipeSubheader)
 
-        const addRecipe = document.createElement('a')
-        addRecipe.innerText = "+ add a recipe"
+        const addRecipe = document.createElement('i')
+        addRecipe.classList.add('fas', 'fa-plus', 'add')
         addRecipe.addEventListener('click', e => this.renderRecipeForm(e))
-        contentsWrapper.appendChild(addRecipe)
+        recipeSubheader.appendChild(addRecipe)
 
         const recipes = document.createElement('ul')
         recipes.id = 'recipe-list'
