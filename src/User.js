@@ -114,9 +114,13 @@ class User {
         e.target.removeEventListener('input', User.addIngredientField)
         const ingredients = document.querySelector('.form-ingredients')
 
+        const ingredientRow = User.ingredientRow()
+        ingredients.appendChild(ingredientRow)
+    }
+
+    static ingredientRow() {
         const ingredientRow = document.createElement('li')
         ingredientRow.classList.add('ingredient-input')
-        ingredients.appendChild(ingredientRow)
 
         const qty = document.createElement('input')
         qty.placeholder = 'Amount'
@@ -130,7 +134,15 @@ class User {
         ingredient.addEventListener('input', User.addIngredientField)
         ingredient.placeholder = 'Ingredient'
         ingredientRow.appendChild(ingredient)
+
+        const addAfter = document.createElement('i')
+        addAfter.classList.add('fas', 'fa-plus')
+        addAfter.addEventListener('click', e => Recipe.addIngredientFieldAfter(e))
+        ingredientRow.appendChild(addAfter)
+
+        return ingredientRow
     }
+
 
     static addDirectionField(e) {
         e.target.removeEventListener('input', User.addDirectionField)

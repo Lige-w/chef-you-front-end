@@ -192,11 +192,17 @@ class Recipe {
 
         const ingredients = document.querySelector('.form-ingredients')
 
+        const ingredientRow = Recipe.ingredientRow(ingredient)
+        ingredients.appendChild(ingredientRow)
+        ingredientRow.addEventListener('input', () => delete(ingredientRow.dataset.ingredientId))
+
+    }
+
+    static ingredientRow(ingredient) {
         const ingredientRow = document.createElement('li')
         ingredientRow.dataset.quantityId = ingredient.quantityId
         ingredientRow.dataset.ingredientId = ingredient.ingredientId
         ingredientRow.classList.add('ingredient-input')
-        ingredients.appendChild(ingredientRow)
 
         const qty = document.createElement('input')
         qty.value = ingredient.amount
@@ -208,8 +214,23 @@ class Recipe {
 
         const ingredientInput = document.createElement('input')
         ingredientInput.value = ingredient.name
-        ingredientRow.addEventListener('input', () => delete(ingredientRow.dataset.ingredientId))
         ingredientRow.appendChild(ingredientInput)
+
+        const addAfter = document.createElement('i')
+        addAfter.classList.add('fas', 'fa-plus')
+        addAfter.addEventListener('click', e => Recipe.addIngredientFieldAfter(e))
+        ingredientRow.appendChild(addAfter)
+
+        return ingredientRow
+    }
+
+    static addIngredientFieldAfter(e) {
+        const ingredients = document.querySelector('.form-ingredients')
+
+        const nextIngredientRow = e.target.parentElement.nextElementSibling
+
+        const ingredientRow = User.ingredientRow()
+        ingredients.insertBefore(ingredientRow, nextIngredientRow)
     }
 
     // adds fields for existing instructions
