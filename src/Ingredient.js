@@ -6,18 +6,20 @@ class Ingredient {
         this.name = params.name
         this.unit = params.unit
         this.amount = params.amount
+        this.index = params.index
     }
 
     static parseFormIngredients(e) {
         const ingredientNodes = e.target.querySelectorAll('.ingredient-input')
         const nodesWithValue = [...ingredientNodes].filter(node => !!node.children[2].value || !!node.dataset.quantityId)
-        return nodesWithValue.map(node => {
+        return nodesWithValue.map((node, index) => {
             const ingredientParams = {
                 ingredient_attributes: {
                     name: node.children[2].value
                 },
                 amount: node.children[0].value,
-                unit: Ingredient.parseUnit(node.children[1].value, node.children[0].value)
+                unit: Ingredient.parseUnit(node.children[1].value, node.children[0].value),
+                index: index
             }
 
             if(!!node.dataset.quantityId) {ingredientParams.id = node.dataset.quantityId}

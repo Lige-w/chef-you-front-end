@@ -7,11 +7,11 @@ class Recipe {
         if (!!params.quantities) {
             this.ingredients = params.quantities.map(ingredient => new Ingredient(ingredient))
                 .filter(ingredient => !!ingredient.name)
-                .sort((a, b) => a.quantityId - b.quantityId)
+                .sort((a, b) => a.index - b.index)
         }
         if (!!params.instructions) {
             this.instructions = params.instructions.map(instruction => new Instruction(instruction))
-                .sort((a, b) => a.id - b.id)
+                .sort((a, b) => a.index - b.index)
         }
     }
 
