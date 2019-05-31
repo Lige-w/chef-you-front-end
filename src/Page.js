@@ -89,11 +89,16 @@ class Page {
         const overlay = document.createElement('div')
         overlay.classList.add('overlay')
         overlay.addEventListener('click', e => {
-            e.target.nextElementSibling.remove()
-            e.target.remove()
+            e.target.nextElementSibling.classList.add('remove')
+            setTimeout(Page.removeModal, 250)
         })
 
         return overlay
+    }
+
+    static removeModal() {
+        document.querySelector('.overlay').nextElementSibling.remove()
+        document.querySelector('.overlay').remove()
     }
 
     static formElement(e) {

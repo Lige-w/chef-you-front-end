@@ -84,7 +84,7 @@ class Ingredient {
 
     renderQuantities(node) {
         const ingredient = document.createElement("li")
-        ingredient.innerHTML = `<strong>${this.amount} ${this.unit}</strong> ${this.name}`
+        ingredient.innerHTML = `<strong>${this.amount} ${this.unit}</strong> - ${this.name}`
         node.appendChild(ingredient)
     }
 

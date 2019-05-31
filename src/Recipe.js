@@ -357,8 +357,8 @@ class Recipe {
         fetch(`${Page.RECIPES_URL}/${this.id}`, Page.configObj('DELETE', {}))
             .then((resp) => resp.json())
             .then(user => {
-                document.querySelector('.overlay').remove()
-                document.querySelector('#delete-wrapper').remove()
+                document.querySelector('#delete-wrapper').classList.add('remove')
+                setTimeout(Page.removeModal, 250)
                 user = new User(user)
                 Page.currentUser = user
                 user.renderUserPortal()
