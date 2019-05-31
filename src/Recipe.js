@@ -14,6 +14,7 @@ class Recipe {
         }
     }
 
+
     //render recipe to User Portal
     renderIndex(node) {
         const listItem = document.createElement('li')
@@ -68,10 +69,11 @@ class Recipe {
         description.innerText = this.description
         pageOne.appendChild(description)
 
-        const servings = document.createElement('p')
-        servings.innerHTML = `<em>Makes ${this.servings} ${this.servings === 1 ? 'serving' : 'servings'}</em>`
-        pageOne.appendChild(servings)
-
+        if (this.servings) {
+            const servings = document.createElement('p')
+            servings.innerHTML = `<em>Makes ${this.servings} ${this.servings === 1 ? 'serving' : 'servings'}</em>`
+            pageOne.appendChild(servings)
+        }
 
         const ingredientHeader = document.createElement('h2')
         ingredientHeader.innerText = 'Ingredients'
@@ -80,7 +82,7 @@ class Recipe {
         const ingredients = document.createElement('ul')
         pageOne.appendChild(ingredients)
 
-        this.ingredients.forEach(ingredient => ingredient.renderQuantities(ingredients))
+        if(!!this.ingredients) {this.ingredients.forEach(ingredient => ingredient.renderQuantities(ingredients))}
 
         const pageTwo = document.createElement('div')
         pageTwo. classList.add('page-two')
@@ -93,7 +95,9 @@ class Recipe {
         const instructions = document.createElement('ol')
         pageTwo.appendChild(instructions)
 
-        this.instructions.forEach(instruction => this.renderInstruction(instructions, instruction))
+        if(!!this.instructions) {
+            this.instructions.forEach(instruction => this.renderInstruction(instructions, instruction))
+        }
 
         Page.currentUser.renderLeftArrow()
 
