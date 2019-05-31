@@ -136,7 +136,7 @@ class User {
         ingredientRow.appendChild(ingredient)
 
         const addAfter = document.createElement('i')
-        addAfter.classList.add('fas', 'fa-plus')
+        addAfter.classList.add('fas', 'fa-plus', 'add')
         addAfter.addEventListener('click', e => Recipe.addIngredientFieldAfter(e))
         ingredientRow.appendChild(addAfter)
 
@@ -164,7 +164,7 @@ class User {
         directionWrapper.appendChild(direction)
 
         const addAfter = document.createElement('i')
-        addAfter.classList.add('fas', 'fa-plus')
+        addAfter.classList.add('fas', 'fa-plus', 'add')
         addAfter.addEventListener('click', Recipe.addInstructionAfter)
         directionWrapper.appendChild(addAfter)
 
