@@ -115,12 +115,7 @@ class Recipe {
     renderEdit(e) {
         const body = document.querySelector('body')
 
-        const overlay = document.createElement('div')
-        overlay.classList.add('overlay')
-        overlay.addEventListener('click', e => {
-            e.target.nextElementSibling.remove()
-            e.target.remove()
-        })
+        const overlay = Page.renderOverlay()
         body.appendChild(overlay)
 
         const formWrapper = document.createElement('div')
@@ -316,9 +311,13 @@ class Recipe {
         fetch(`${Page.RECIPES_URL}/${this.id}`, Page.configObj('PATCH', body))
             .then(resp => resp.json())
             .then(recipe => {
-                document.querySelector('.overlay').remove()
-                document.querySelector('.form-wrapper').remove()
 
+                const formWrapper = document.querySelector('.form-wrapper')
+                formWrapper.classList.add('remove')
+                setTimeout( () => {
+                    formWrapper.remove()
+                    document.querySelector('.overlay').remove()
+                }, 300)
                 const userRecipes = Page.currentUser.recipes
                 const index = userRecipes.indexOf(userRecipes.find(userRecipe => userRecipe.id === recipe.id))
 
