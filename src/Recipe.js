@@ -227,9 +227,12 @@ class Recipe {
     static addIngredientFieldAfter(e) {
         const ingredients = document.querySelector('.form-ingredients')
 
+        e.target.removeEventListener('input', User.addIngredientField)
+
         const nextIngredientRow = e.target.parentElement.nextElementSibling
 
         const ingredientRow = User.ingredientRow()
+        ingredientRow.children[2].removeEventListener('input', User.addIngredientField)
         ingredients.insertBefore(ingredientRow, nextIngredientRow)
     }
 
