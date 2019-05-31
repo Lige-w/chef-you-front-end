@@ -149,14 +149,26 @@ class User {
 
         const directions = document.querySelector('.form-directions')
 
-        const directionWrapper = document.createElement('li')
+        const directionWrapper = User.directionField()
         directions.appendChild(directionWrapper)
+
+    }
+
+    static directionField() {
+        const directionWrapper = document.createElement('li')
 
         const direction = document.createElement('textarea')
         direction.classList.add('direction-input')
         direction.placeholder = 'Add an instruction step'
         direction.addEventListener('input', User.addDirectionField)
         directionWrapper.appendChild(direction)
+
+        const addAfter = document.createElement('i')
+        addAfter.classList.add('fas', 'fa-plus')
+        addAfter.addEventListener('click', Recipe.addInstructionAfter)
+        directionWrapper.appendChild(addAfter)
+
+        return directionWrapper
     }
 
     createRecipe(e) {
