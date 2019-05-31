@@ -11,6 +11,15 @@ body {
 
 ul {
     list-style: none;
+    padding: 0;
+}
+
+ol {
+    padding: 0 20px;
+}
+
+li {
+    margin: 10px 0;
 }
 
 #background {
@@ -105,6 +114,7 @@ form.login .login-button:hover {
     transform: translate(-50%, -50%);
     padding: 0 5%;
     border-radius: 1px;
+    overflow: scroll;
 }
 
 .page-one {
@@ -127,7 +137,6 @@ form.login .login-button:hover {
     background: linear-gradient(90deg, black 0%, gray 1%, lightgray 4%, white 10%);
     vertical-align: top;
     left: 74%;
-    overflow: scroll;
     box-shadow: 4px 3px 9px 4px;
 }
 
