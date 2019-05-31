@@ -173,6 +173,7 @@ a {
     top: 3vh;
     left: 17vw;
     width: 60vw;
+    min-width: 410px;
     height: 94vh;
     padding: 0 3vw;
     z-index: 3;
@@ -196,7 +197,7 @@ a {
 }
 
 .form-wrapper ul input {
-    width: 31%;
+    width: 30%;
     border-style: solid;
     margin-top: 2px;
 }
@@ -235,6 +236,11 @@ a {
 .modal {
     border-radius: 1px;
     box-shadow: 3px 3px 9px 5px;
+}
+
+.add {
+    font-size: 1em;
+    margin: 5px 0 0 5px;
 }
     /*/////// Recipe Page /////////*/
 

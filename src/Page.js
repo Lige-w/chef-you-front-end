@@ -120,6 +120,11 @@ class Page {
         ingredientsHeader.innerText = 'Ingredients'
         form.appendChild(ingredientsHeader)
 
+        const addIngredient = document.createElement('i')
+        addIngredient.classList.add('fas', 'fa-plus', 'add')
+        addIngredient.addEventListener('click', Recipe.prependIngredientRow)
+        ingredientsHeader.appendChild(addIngredient)
+
         const ingredients = document.createElement('ul')
         ingredients.classList.add('form-ingredients')
         form.appendChild(ingredients)
@@ -127,6 +132,11 @@ class Page {
         const instructionsHeader = document.createElement('h3')
         instructionsHeader.innerText = 'Instructions'
         form.appendChild(instructionsHeader)
+
+        const addInstruction = document.createElement('i')
+        addInstruction.classList.add('fas', 'fa-plus', 'add')
+        addInstruction.addEventListener('click', Recipe.prependInstructionField)
+        instructionsHeader.appendChild(addInstruction)
 
         const directions = document.createElement('ol')
         directions.classList.add('form-directions')
@@ -143,4 +153,6 @@ class Page {
 
         return form
     }
+
+
 }

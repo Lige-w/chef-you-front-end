@@ -157,6 +157,11 @@ class Recipe {
         ingredientsHeader.innerText = 'Ingredients'
         form.appendChild(ingredientsHeader)
 
+        const addIngredient = document.createElement('i')
+        addIngredient.classList.add('fas', 'fa-plus', 'add')
+        addIngredient.addEventListener('click', Recipe.prependIngredientRow)
+        ingredientsHeader.appendChild(addIngredient)
+
         const ingredients = document.createElement('ul')
         ingredients.classList.add('form-ingredients')
         form.appendChild(ingredients)
@@ -168,6 +173,11 @@ class Recipe {
         const instructionsHeader = document.createElement('h3')
         instructionsHeader.innerText = 'Instructions'
         form.appendChild(instructionsHeader)
+
+        const addInstruction = document.createElement('i')
+        addInstruction.classList.add('fas', 'fa-plus', 'add')
+        addInstruction.addEventListener('click', Recipe.prependInstructionField)
+        instructionsHeader.appendChild(addInstruction)
 
         const directions = document.createElement('ol')
         directions.classList.add('form-directions')
@@ -217,7 +227,7 @@ class Recipe {
         ingredientRow.appendChild(ingredientInput)
 
         const addAfter = document.createElement('i')
-        addAfter.classList.add('fas', 'fa-plus')
+        addAfter.classList.add('fas', 'fa-plus', 'add')
         addAfter.addEventListener('click', e => Recipe.addIngredientFieldAfter(e))
         ingredientRow.appendChild(addAfter)
 
@@ -236,15 +246,23 @@ class Recipe {
         ingredients.insertBefore(ingredientRow, nextIngredientRow)
     }
 
+    static prependIngredientRow(e) {
+        const ingredients = document.querySelector('.form-ingredients')
+        const ingredientRow = User.ingredientRow()
+        ingredientRow.children[2].removeEventListener('input', User.addIngredientField)
+        ingredients.prepend(ingredientRow)
+
+    }
+
     // adds fields for existing instructions
     static addInstructionField(instruction) {
         const directions = document.querySelector('.form-directions')
-        const directionWrapper = Recipe.InstructionField(instruction)
+        const directionWrapper = Recipe.instructionField(instruction)
         directions.appendChild(directionWrapper)
 
     }
 
-    static InstructionField(instruction) {
+    static instructionField(instruction) {
         const directionWrapper = document.createElement('li')
 
         const direction = document.createElement('textarea')
@@ -254,7 +272,7 @@ class Recipe {
         directionWrapper.appendChild(direction)
 
         const addAfter = document.createElement('i')
-        addAfter.classList.add('fas', 'fa-plus')
+        addAfter.classList.add('fas', 'fa-plus', 'add')
         addAfter.addEventListener('click', Recipe.addInstructionAfter)
         directionWrapper.appendChild(addAfter)
 
@@ -271,6 +289,14 @@ class Recipe {
         const directionField = User.directionField()
         directionField.children[0].removeEventListener('input', User.addDirectionField)
         directions.insertBefore(directionField, nextDirectionRow)
+    }
+
+    static prependInstructionField(e) {
+        const directions = document.querySelector('.form-directions')
+
+        const instructionField = User.directionField()
+        instructionField.children[0].removeEventListener('input', User.addDirectionField)
+        directions.prepend(instructionField)
     }
 
     updateRecipe(e) {
