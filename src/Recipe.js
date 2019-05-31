@@ -239,15 +239,38 @@ class Recipe {
     // adds fields for existing instructions
     static addInstructionField(instruction) {
         const directions = document.querySelector('.form-directions')
-
-        const directionWrapper = document.createElement('li')
+        const directionWrapper = Recipe.InstructionField(instruction)
         directions.appendChild(directionWrapper)
+
+    }
+
+    static InstructionField(instruction) {
+        const directionWrapper = document.createElement('li')
 
         const direction = document.createElement('textarea')
         direction.classList.add('direction-input')
         direction.dataset.id = instruction.id
         direction.value = instruction.description
         directionWrapper.appendChild(direction)
+
+        const addAfter = document.createElement('i')
+        addAfter.classList.add('fas', 'fa-plus')
+        addAfter.addEventListener('click', Recipe.addInstructionAfter)
+        directionWrapper.appendChild(addAfter)
+
+        return directionWrapper
+    }
+
+    static addInstructionAfter(e) {
+        const directions = document.querySelector('.form-directions')
+
+        e.target.previousElementSibling.removeEventListener('input', User.addDirectionField)
+
+        const nextDirectionRow = e.target.parentElement.nextElementSibling
+
+        const directionField = User.directionField()
+        directionField.children[0].removeEventListener('input', User.addDirectionField)
+        directions.insertBefore(directionField, nextDirectionRow)
     }
 
     updateRecipe(e) {
