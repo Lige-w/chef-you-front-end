@@ -6,6 +6,7 @@ class Recipe {
         this.servings = params.servings
         if (!!params.quantities) {
             this.ingredients = params.quantities.map(ingredient => new Ingredient(ingredient))
+                .filter(ingredient => !!ingredient.name)
                 .sort((a, b) => a.quantityId - b.quantityId)
         }
         if (!!params.instructions) {
