@@ -10,7 +10,6 @@ h1, h2, h3 {
 
 body {
     margin: 0;
-    /*background-color: black;*/
 }
 
 ul {
@@ -51,6 +50,8 @@ li {
     background: linear-gradient(90deg, #995d16 1%, #4e300c 4%, #995d16 7%);
     left: 50%;
     top: 50%;
+    max-width: 640px;
+    min-width: 415px;
     transform: translate(-50%, -50%);
     border-radius: 2px;
     border: 2px solid #4e300c;
@@ -106,6 +107,8 @@ form.login .login-button:hover {
 
 #root.open {
     width: 90vw;
+    max-width: 1290px;
+    min-width: 560px;
     background: linear-gradient(90deg, #995d16 44%, #4e300c 47%, #995d16 49%, #995d16 51%, #4e300c 53%, #995d16 56%);
 }
 
@@ -182,6 +185,12 @@ a {
     padding: 0 3vw;
     z-index: 3;
     overflow: scroll;
+    animation: form-modal 250ms ease-out;
+}
+
+.form-wrapper.remove {
+    top: -95vh;
+    animation: remove-form-modal 250ms ease-in;
 }
 
 .form-wrapper input {
@@ -318,4 +327,14 @@ i.arrow-right {
 @keyframes remove-delete-modal {
     from {top: 30vh}
     to {top: -15vh}
+}
+
+@keyframes form-modal {
+    from {top: -95vh}
+    to {top: 3vh}
+}
+
+@keyframes remove-form-modal {
+    from {top: 3vh}
+    to {top: -100vh}
 }

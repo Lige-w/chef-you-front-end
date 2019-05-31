@@ -188,8 +188,12 @@ class User {
         fetch(Page.RECIPES_URL, Page.configObj("POST", body))
             .then(resp => resp.json())
             .then(recipe => {
-                document.querySelector('.overlay').remove()
-                document.querySelector('.form-wrapper').remove()
+                const formWrapper = document.querySelector('.form-wrapper')
+                formWrapper.classList.add('remove')
+                setTimeout( () => {
+                    formWrapper.remove()
+                    document.querySelector('.overlay').remove()
+                }, 300)
                 const newRecipe = new Recipe(recipe)
                 Page.currentUser.recipes.push(newRecipe)
                 newRecipe.render()

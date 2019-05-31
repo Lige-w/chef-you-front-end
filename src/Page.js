@@ -90,7 +90,7 @@ class Page {
         overlay.classList.add('overlay')
         overlay.addEventListener('click', e => {
             e.target.nextElementSibling.classList.add('remove')
-            setTimeout(Page.removeModal, 250)
+            setTimeout(Page.removeModal, 300)
         })
 
         return overlay
