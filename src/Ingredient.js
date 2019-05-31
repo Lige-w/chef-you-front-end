@@ -28,19 +28,21 @@ class Ingredient {
     }
 
     static parseUnit(unit, amount) {
+        const parsedAmount = Ingredient.parseAmount(amount)
+
         switch(unit.toLowerCase().trim()) {
             case 'tsp':
             case 'tea spoon':
             case 'teaspoon':
             case 'tea spoons':
             case 'teaspoons':
-                unit = amount > 1 ? 'teaspoons' : 'teaspoon'
+                unit = parsedAmount > 1 ? 'teaspoons' : 'teaspoon'
                 break
             case 'c':
             case 'cup':
 
             case 'cups':
-                unit = amount > 1 ? 'cups' : 'cup'
+                unit = parsedAmount > 1 ? 'cups' : 'cup'
                 break
             case 'tbs':
             case 'tb':
@@ -48,25 +50,34 @@ class Ingredient {
             case 'tablespoon':
             case 'table spoons':
             case 'tablespoons':
-                unit = amount > 1 ? 'tablespoons' : 'tablespoon'
+                unit = parsedAmount > 1 ? 'tablespoons' : 'tablespoon'
                 break
             case 't':
                 if (unit === 'T') {
-                    unit = amount > 1 ? 'tablespoons' : 'tablespoon'
+                    unit = parsedAmount > 1 ? 'tablespoons' : 'tablespoon'
                 } else {
-                    unit = amount > 1 ? 'teaspoons' : 'teaspoon'
+                    unit = parsedAmount > 1 ? 'teaspoons' : 'teaspoon'
                 }
                 break
             case 'lb':
             case 'lbs':
             case 'pounds':
             case 'pound':
-                unit = amount > 1 ? 'cups' : 'cup'
+                unit = parsedAmount > 1 ? 'pounds' : 'pound'
                 break
             default:
                 unit.trim()
         }
         return unit
+    }
+
+    static  parseAmount(amount) {
+        const split = amount.split('/')
+        if (split[0].split(' ').length > 1 || split.length !== 2) {
+            return parseInt(amount)
+        } else {
+            return parseInt(split[0], 10) / parseInt(split[1], 10)
+        }
     }
 
     renderQuantities(node) {
