@@ -1,10 +1,12 @@
 class Page {
 
-    static RECIPES_URL = 'http://localhost:3000/api/v1/recipes'
+    static URL = 'https://chefyouapi.herokuapp.com'
 
-    static USERS_URL = 'http://localhost:3000/api/v1/users'
+    static RECIPES_URL = Page.URL + '/api/v1/recipes'
 
-    static LOGIN_URL = 'http://localhost:3000/api/v1/login'
+    static USERS_URL = Page.URL + '/api/v1/users'
+
+    static LOGIN_URL = Page.URL + '/api/v1/login'
 
     static  currentUser = false
 
