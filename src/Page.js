@@ -1,6 +1,7 @@
 class Page {
 
     static URL = 'https://chefyouapi.herokuapp.com'
+    // static URL = 'http://localhost:3000'
 
     static RECIPES_URL = Page.URL + '/api/v1/recipes'
 
