@@ -17,7 +17,6 @@ class User {
         fetch(Page.USERS_URL, Page.configObj('POST', body))
             .then(resp => resp.json())
             .then(user => {
-                console.log(user)
                 const loggedIn = new User(user)
                 loggedIn.renderUserPortal()
             })
@@ -32,7 +31,6 @@ class User {
         fetch(Page.LOGIN_URL, Page.configObj('POST', body))
             .then(resp => resp.json())
             .then(user => {
-                console.log(user)
                 const loggedIn = new User(user)
                 loggedIn.renderUserPortal()
             })
